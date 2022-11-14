@@ -35,4 +35,5 @@ void listprint(struct ListNode * l)
 		printf("%d,",l->val);
 		l=l->next;
 	}
+	printf("\n");
 }
