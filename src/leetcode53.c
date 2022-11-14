@@ -4,7 +4,7 @@
 
 
 #define IMAX(a,b) ((a)<(b)?(b):(a))
-// 遍历实现 O(n^2)
+// 遍历实现 O(n^2) //子数组
 int maxSubArray0(int* nums, int numsSize){
 	int s=nums[0],sj=0;
 	for (size_t i = 0; i < numsSize; i++)
