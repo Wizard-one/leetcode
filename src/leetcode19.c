@@ -4,33 +4,21 @@
 
 //#哑节点 #双指针 #快慢指针
 struct ListNode* removeNthFromEnd(struct ListNode* head, int n){
-	struct ListNode* fcur=head,*scur=head;
-	int step=0;
-	for (size_t i = 0; i < n+1; i++)
+	struct ListNode* fcur=head,*scur,*dummy;
+	dummy=malloc(sizeof(struct ListNode));
+	dummy->next=head;
+	scur=dummy;
+	for (size_t i = 0; i < n; i++)
 	{
 		fcur=fcur->next;
-		step++;
-		if(fcur==NULL)
-		{
-			break;
-		}
 	}
 	while (fcur!=NULL)
 	{
 		fcur=fcur->next;
 		scur=scur->next;
 	}
-	if(step==1&&n==1&&head->next!=NULL)
-	{
-		head->next=NULL;
-	}
-	else if (scur==head && step<n+1)
-	{
-		head=head->next;
-	}
-	else
-		scur->next=scur->next->next;
-	return head;
+	scur->next=scur->next->next;
+	return dummy->next;
 }
 
 int main()
