@@ -37,3 +37,26 @@ void ListPrint(struct ListNode * l)
 	}
 	printf("\n");
 }
+
+/**
+ * @brief Create a Bi Tree object
+ * 
+ * @param T Tree address
+ * @param nums list use -1 mark NULL
+ * @param idx list index
+ */
+void CreateBiTree(struct TreeNode **T,int *nums,int *idx)
+{
+	(*idx)++;
+	if(nums[*idx]==-1)
+		*T=NULL;
+	else
+	{
+		*T=(struct TreeNode*)malloc(sizeof(struct TreeNode));
+		if(! *T)
+			exit(-1);
+		(*T)->val=nums[(*idx)];
+		CreateBiTree(&(*T)->left,nums,idx);
+		CreateBiTree(&(*T)->right,nums,idx);
+	}
+}
