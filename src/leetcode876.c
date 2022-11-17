@@ -17,7 +17,7 @@ int main()
 {
 	int a[]={1,2,3,4,5};
 	struct ListNode* h;
-	h=init(a,5);
+	h=ListInit(a,5);
 	h=middleNode(h);
-	listprint(h);
+	ListPrint(h);
 }

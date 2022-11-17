@@ -2,9 +2,9 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-struct ListNode* init(int* l,int ns);
+struct ListNode* ListInit(int* l,int ns);
 
-void listprint(struct ListNode * l);
+void ListPrint(struct ListNode * l);
 
 struct ListNode {
     int val;

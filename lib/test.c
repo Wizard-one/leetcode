@@ -5,7 +5,7 @@
 
 
 
-struct ListNode* init(int* l,int ns)
+struct ListNode* ListInit(int* l,int ns)
 {
 	struct ListNode * r,*rh;
 	r=malloc(sizeof(struct ListNode));
@@ -28,7 +28,7 @@ struct ListNode* init(int* l,int ns)
 	return rh;
 }
 
-void listprint(struct ListNode * l)
+void ListPrint(struct ListNode * l)
 {
 	while (l!=NULL)
 	{

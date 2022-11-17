@@ -22,7 +22,7 @@ struct ListNode* removeElements(struct ListNode* head, int val){
 int main(){
 	int a[]={1,2,6,3,4,5,6};
 	struct ListNode *l,*ans;
-	l=init(a,7);
+	l=ListInit(a,7);
 	ans=removeElements(l,6);
-	listprint(ans);
+	ListPrint(ans);
 }

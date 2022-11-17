@@ -28,7 +28,7 @@ struct ListNode* reverseList(struct ListNode* head){
 int main(){
 	int a[]={1,2,3,4,5};
 	struct ListNode *b,*ans;
-	b=init(a,5);
+	b=ListInit(a,5);
 	ans=reverseList(b);
-	listprint(ans);
+	ListPrint(ans);
 }

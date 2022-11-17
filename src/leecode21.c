@@ -63,8 +63,8 @@ struct ListNode* mergeTwoLists(struct ListNode* list1, struct ListNode* list2){
 int main(){
 	int l1[3]={1,2,4},l2[3]={1,3};
 	struct ListNode *ll1,*ll2,*ans;
-	ll1=init(l1,3);
-	ll2=init(l2,2);
+	ll1=ListInit(l1,3);
+	ll2=ListInit(l2,2);
 	ans=mergeTwoLists(ll1,ll2);
-	listprint(ans);
+	ListPrint(ans);
 }

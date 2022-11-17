@@ -26,22 +26,22 @@ int main()
 	int a[]={1,2,3,4,5};
 	int b[]={1,2};
 	struct ListNode* h;
-	h=init(a,5);
+	h=ListInit(a,5);
 	h=removeNthFromEnd(h,2);
-	listprint(h);
-	h=init(b,2);
+	ListPrint(h);
+	h=ListInit(b,2);
 	h=removeNthFromEnd(h,2);
-	listprint(h);
-	h=init(b,2);
+	ListPrint(h);
+	h=ListInit(b,2);
 	h=removeNthFromEnd(h,1);
-	listprint(h);
+	ListPrint(h);
 	int c[]={1,2,3};
-	h=init(c,3);
+	h=ListInit(c,3);
 	h=removeNthFromEnd(h,2);
-	listprint(h);
+	ListPrint(h);
 	int d[]={1};
-	h=init(c,1);
+	h=ListInit(c,1);
 	h=removeNthFromEnd(h,1);
-	listprint(h);
+	ListPrint(h);
 
 }

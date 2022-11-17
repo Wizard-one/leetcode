@@ -31,14 +31,14 @@ int main(){
 	int b[]={1,1,2,3,3,4};
 	int c[]={1,2,2,3};
 	struct ListNode *ans;
-	ans=init(a,4);
+	ans=ListInit(a,4);
 	ans=deleteDuplicates(ans);
-	listprint(ans);
-	ans=init(b,6);
+	ListPrint(ans);
+	ans=ListInit(b,6);
 	ans=deleteDuplicates(ans);
-	listprint(ans);
-	ans=init(c,4);
+	ListPrint(ans);
+	ans=ListInit(c,4);
 	ans=deleteDuplicates(ans);
-	listprint(ans);
+	ListPrint(ans);
 	
 }
