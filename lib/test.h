@@ -17,4 +17,6 @@ struct TreeNode {
     struct TreeNode *right;
 };
 
-void CreateBiTree(struct TreeNode **T,int *nums,int *idx);
+void TreeInit(struct TreeNode **T,int *nums,int *idx);
+
+void TreePrint(struct TreeNode* root);

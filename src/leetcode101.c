@@ -30,7 +30,7 @@ int main(){
 	int l[]={0,1,2,3,-1,-1,4,-1,-1,2,4,-1,-1,3,-1,-1},i=0;
 	struct TreeNode *T;
 	bool ans;
-	CreateBiTree(&T,l,&i);
+	TreeInit(&T,l,&i);
 	ans=isSymmetric(T);
 	printf("%d",ans);
 }

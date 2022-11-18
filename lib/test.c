@@ -45,7 +45,7 @@ void ListPrint(struct ListNode * l)
  * @param nums list use -1 mark NULL
  * @param idx list index
  */
-void CreateBiTree(struct TreeNode **T,int *nums,int *idx)
+void TreeInit(struct TreeNode **T,int *nums,int *idx)
 {
 	(*idx)++;
 	if(nums[*idx]==-1)
@@ -56,7 +56,38 @@ void CreateBiTree(struct TreeNode **T,int *nums,int *idx)
 		if(! *T)
 			exit(-1);
 		(*T)->val=nums[(*idx)];
-		CreateBiTree(&(*T)->left,nums,idx);
-		CreateBiTree(&(*T)->right,nums,idx);
+		TreeInit(&(*T)->left,nums,idx);
+		TreeInit(&(*T)->right,nums,idx);
+	}
+}
+/**
+ * @brief 层序打印树
+ * 
+ * @param root 树根节点 
+ */
+void TreePrint(struct TreeNode* root)
+{
+	if (root==NULL)
+	{
+		printf("[]");
+	}
+	struct TreeNode **queue;
+	queue=malloc(sizeof(struct TreeNode *)*2000);
+	int front=0,rear=0;
+	queue[front++]=root;
+	while ((front)!=(rear))
+	{
+		int last=(front);//标记当前层位置
+		int col=0;
+		while ((rear)<last)	
+		{
+			root=queue[(rear)++];
+			printf("%d,",root->val);
+			if (root->left!=NULL)
+				queue[(front)++]=root->left;
+			if (root->right!=NULL)		
+				queue[(front)++]=root->right;
+		}
+		printf("\n");
 	}
 }

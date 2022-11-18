@@ -30,7 +30,7 @@ int maxDepth(struct TreeNode* root){
 int main(){
 	int l[]={0,3,9,-1,-1,20,15,-1,-1,7,-1,-1},i=0;
 	struct TreeNode * T;
-	CreateBiTree(&T,l,&i);
+	TreeInit(&T,l,&i);
 	i=maxDepth(T);
 	printf("%d",i);
 
