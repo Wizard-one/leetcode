@@ -1,6 +1,8 @@
 #include <test.h>
 #include <stdlib.h>
 
+
+// #层序遍历 #二叉树 [[114]]
 int** levelOrder(struct TreeNode* root, int* returnSize, int** returnColumnSizes){
 	int **ans;
 	(*returnSize)=0;
@@ -35,39 +37,6 @@ int** levelOrder(struct TreeNode* root, int* returnSize, int** returnColumnSizes
 	return result;
 }
 
-/* int** levelOrder(struct TreeNode* root,int* returnSize,int** returnColumnSizes)
-{
-    *returnSize = 0;
-    if(root == NULL)
-        return NULL;
-    int** returnNums = (int**)malloc(sizeof(int*) * 2001);
-    *returnColumnSizes = (int*)malloc(sizeof(int) * 2001);
-    struct TreeNode* queueDat[2001];
-    int  queueFront = 0;
-    int  queueRear  = 0;
-    struct TreeNode* cur;
-
-    queueDat[queueRear++] = root;
-    while(queueFront != queueRear)
-    {
-        int colSize = 0;
-        int last = queueRear;
-        returnNums[*returnSize] = (int*)malloc(sizeof(int) * (last - queueFront));
-        while(queueFront < last)
-        {
-            cur = queueDat[queueFront++];
-            returnNums[*returnSize][colSize++] = cur ->val;
-            if(cur -> left != NULL)
-                queueDat[queueRear++] = cur -> left;
-            if(cur -> right != NULL)
-                queueDat[queueRear++] = cur -> right;
-        }
-        (*returnColumnSizes)[*returnSize] = colSize;
-        (*returnSize)++;
-    }
-    return returnNums;
-}
- */
 int main(){
 	struct TreeNode *t=TreeNodeInit(3);
 	t->left=TreeNodeInit(9);
