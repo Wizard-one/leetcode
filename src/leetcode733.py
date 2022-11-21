@@ -1,5 +1,5 @@
 from typing import List 
-# #递归 #深度优先
+# #递归 #深度优先搜索
 class Solution:
 	def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
 		if image[sr][sc]==color:
