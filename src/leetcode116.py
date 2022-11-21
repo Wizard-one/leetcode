@@ -8,7 +8,7 @@ class Node:
 		self.right = right
 		self.next = next
 
-# #二叉树 #层序遍历 [[leetcode102]]
+# #二叉树 #层序遍历 [[leetcode102]] #广度优先搜索
 class Solution:
 	def connect(self, root: 'Optional[Node]') -> 'Optional[Node]':
 		if root==None:
