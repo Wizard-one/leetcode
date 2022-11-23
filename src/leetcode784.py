@@ -1,7 +1,26 @@
 from typing import  List 
+import collections
+
+class Solution:
+	# #广度优先搜索
+	def letterCasePermutation(self, s: str) -> List[str]:
+		q=collections.deque([""])
+		ans=[]
+		while q:
+			pos=len(q[0])
+			if pos==len(s):
+				c=q.popleft()
+				ans.append(c)
+			else:
+				if s[pos].isalpha():
+					q.append(q[0]+s[pos].swapcase())#实现了广度优先搜索，将大写or小写的case也加入
+				q[0]+=s[pos]#由于是个二叉树，只需要再加入原有状态
+		return ans
+			
+			
 
 # #回溯 #二叉树 #字符串
-class Solution:
+class Solution1:
 	def __init__(self):
 		self.ans=[]
 
