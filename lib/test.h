@@ -20,3 +20,5 @@ struct TreeNode {
 void TreeInit(struct TreeNode **T,int *nums,int *idx);
 
 void TreePrint(struct TreeNode* root);
+
+void printmat(int **mat, int matrixSize, int* matrixColSize);
