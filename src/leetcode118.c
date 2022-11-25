@@ -5,6 +5,7 @@
  * The sizes of the arrays are returned as *returnColumnSizes array.
  * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().
  */
+// #数组 杨辉三角
 int** generate(int numRows, int* returnSize, int** returnColumnSizes){
 	*returnSize=numRows;
 	int **ans;
