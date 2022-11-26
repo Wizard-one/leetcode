@@ -10,7 +10,7 @@ class Solution:
 		intervals.sort(key=takefirst)#预先按照区间开始点进行排序
 		ans:List[List[int]]=[intervals[0]]
 		for i in range(1,len(intervals)):
-			# 当前区间起始点相比上一个加入结果的右端点小
+			# 当前区间点相比上一个加入结果的右端点小
 			# e.g [1,3] [2,6] 2<3
 			if intervals[i][0]<=ans[-1][1]:
 				#将结果边界更新为大的

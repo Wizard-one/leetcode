@@ -3,6 +3,7 @@
 #define IMIN(a,b) ((a)<(b)?(a):(b))
 
 // #动态规划 space: O(n) time: O(n^2)
+// 三角形最小路径和
 int minimumTotal(int** triangle, int triangleSize, int* triangleColSize){
 	int path;//min f(r,c) in r
 	int prevrowc=triangle[0][0];//f(r-1,c)
@@ -25,6 +26,8 @@ int minimumTotal(int** triangle, int triangleSize, int* triangleColSize){
 	f[1]=prevrowc;
 	for (size_t r = 2; r < triangleSize; r++)
 	{
+		// f(r,c)=min(f(r-1,c),f(r-1,c-1))+tr(r,c)
+		// B.C. 边界上只有一个到达路径
 		f[triangleColSize[r]-1]=f[triangleColSize[r]-2]+triangle[r][triangleColSize[r]-1];
 		for (size_t c = triangleColSize[r]-2; c >0 ; c--)
 		{
