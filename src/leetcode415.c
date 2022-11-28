@@ -17,56 +17,31 @@ void addchar(int c,char* ans,int up,int k)
 	}
 }
 
-// #字符串
-char * addStrings(char * num1, char * num2){
-	char *ansFilp;
-	int len1=strlen(num1),len2=strlen(num2),maxlen,minlen,up=0;
-	maxlen=(len1>len2)?(len1):(len2);
-	ansFilp=malloc((maxlen+2)*sizeof(char));
-	memset(ansFilp,'\0',(maxlen+2)*sizeof(char));
-	int   i=len1-1,j=len2-1,k=0;
-	while (i>=0&&j>=0)
-	{
-		int current=num1[i]+num2[j]-2*'0'+up;
-		addchar(current,ansFilp,up,k);
-		i--;
-		j--;
-		k++;
-	}
-	if (i<0)
-	{
-		while (j>=0)
-		{
-			int current=num2[j]+up-'0';
-			addchar(current,ansFilp,up,k);
-			k++;
-			j--;
-		}
-	}
-	else if (j<0)
-	{
-		while (i>=0)
-		{
-			int current=num1[i]+up-'0';
-			addchar(current,ansFilp,up,k);
-			k++;
-			i--;
-		}
-	}
-	if (up==1)
-	{
-		ansFilp[k]='1';
-	}
-	char *ans;
-	int newlen=strlen(ansFilp);
-	ans=malloc(sizeof(char)*(newlen+1));
-	for (i = 0; i < newlen; i++)
-	{
-		ans[newlen-i-1]=ansFilp[i];
-	}
-	ans[newlen]='\0';
-	return ans;	
+// #字符串 #模拟 [[43]]
+/* 
+位数短的使用补零的技巧
+ */
+char* addStrings(char* num1, char* num2) {
+    int i = strlen(num1) - 1, j = strlen(num2) - 1, add = 0;
+    char* ans = (char*)malloc(sizeof(char) * (fmax(i, j) + 3));
+    int len = 0;
+    while (i >= 0 || j >= 0 || add != 0) {
+        int x = (i >= 0 ? num1[i] - '0' : 0);
+        int y = (j >= 0 ? num2[j] - '0' : 0);
+        int result = x + y + add;
+        ans[len++] = '0' + result % 10;
+        add = result / 10;
+        i--, j--;
+    }
+    // 计算完以后的答案需要翻转过来
+    for (int i = 0; 2 * i < len; i++) {
+        int t = ans[i];
+        ans[i] = ans[len - i - 1], ans[len - i - 1] = t;
+    }
+    ans[len++] = 0;
+    return ans;
 }
+
 
 int main()
 {
