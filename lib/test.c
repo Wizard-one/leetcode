@@ -4,7 +4,13 @@
 #include <stdbool.h>
 
 
-
+/**
+ * @brief init list from int array
+ * 
+ * @param l int array
+ * @param ns array length
+ * @return struct ListNode* list head 
+ */
 struct ListNode* ListInit(int* l,int ns)
 {
 	struct ListNode * r,*rh;
@@ -27,7 +33,11 @@ struct ListNode* ListInit(int* l,int ns)
 	}
 	return rh;
 }
-
+/**
+ * @brief print List
+ * 
+ * @param l input list
+ */
 void ListPrint(struct ListNode * l)
 {
 	while (l!=NULL)
