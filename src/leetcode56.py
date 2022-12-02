@@ -3,8 +3,10 @@ from typing import List
 def takefirst(e):
 	return e[0]
 
-# #排序
-
+# #排序 #数组
+""" 
+合并区间
+"""
 class Solution:
 	def merge(self, intervals: List[List[int]]) -> List[List[int]]:
 		intervals.sort(key=takefirst)#预先按照区间开始点进行排序
