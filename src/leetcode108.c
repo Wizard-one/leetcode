@@ -2,38 +2,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// #BST #二叉树 #中序遍历 #递归
+// #BST #二叉树 #中序遍历 #递归 #二分法
 /* 将排序好的数组转化为一颗二叉搜索树
 
 确定好可以选择中间节点作为root 之后 就可以通过拆分区间来实现递归
 
+实际上只需要传递区间的两个端点，不需要进行区间的赋值
  */
-
-struct TreeNode* CreateBSTNode(int* nums, int numsSize)
+struct TreeNode* CreateBSTNode(int* nums, int left,int right)
 {
-	if (numsSize==0)
+	if (left>right)
 	{
 		return NULL;
 	}
+	int mid=(left+right)/2;
 	struct TreeNode *new;
 	new=malloc(sizeof(struct TreeNode));
-	new->val=nums[numsSize/2];
-	new->left=NULL;
-	new->right=NULL;
-	int *lnums,*rnums;
-	lnums=malloc(sizeof(int)*numsSize/2);//拆分左右区间
-	rnums=malloc(sizeof(int)*numsSize-numsSize/2-1);
-	//左右区间赋值
-	for (size_t i = 0; i < numsSize/2; i++)
-	{
-		lnums[i]=nums[i];
-	}
-	for (size_t i = numsSize/2+1; i < numsSize; i++)
-	{
-		rnums[i-(numsSize/2+1)]=nums[i];
-	}
-	new->left=CreateBSTNode(lnums,numsSize/2);
-	new->right=CreateBSTNode(rnums,numsSize-numsSize/2-1);
+	new->val=nums[mid];
+	new->left=CreateBSTNode(nums,left,mid-1);
+	new->right=CreateBSTNode(nums,mid+1,right);
 	return new;
 }
 
@@ -41,7 +28,7 @@ struct TreeNode* CreateBSTNode(int* nums, int numsSize)
 
 struct TreeNode* sortedArrayToBST(int* nums, int numsSize){
 	struct TreeNode *root;
-	root=CreateBSTNode(nums,numsSize);
+	root=CreateBSTNode(nums,0,numsSize-1);
 	return root;
 }
 
