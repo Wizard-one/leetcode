@@ -5,7 +5,16 @@ struct ListNode
 	int val;
 	struct ListNode *next;
 };
+// #链表
 
+/* 两数相加
+
+倒叙给2个数，分别使用链表存储，返回相加的结果。
+
+这一类题目往往要考虑其中一个链表长度不足的情况，
+而长度不足通常的解决方案就是设置默认值
+
+ */
 struct ListNode *
 addTwoNumbers(struct ListNode *l1, struct ListNode *l2)
 {
@@ -29,6 +38,7 @@ addTwoNumbers(struct ListNode *l1, struct ListNode *l2)
 		}
 		l1 = l1->next;
 		l2 = l2->next;
+		// 位不足可以默认为零而不是用这种复杂的逻辑判断
 		if (l1 == NULL && l2!=NULL)
 		{
 			l1 = malloc(sizeof(struct ListNode));

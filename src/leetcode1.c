@@ -1,8 +1,11 @@
 #include <stdlib.h>
 #include <stdio.h>
-/**
- * Note: The returned array must be malloced, assume caller calls free().
+//#数组
+
+/* 两数之和
+求数组nums中两个数和为目标值的数,直接暴力O(N^2)
  */
+
 int* twoSum(int* nums, int numsSize, int target, int* returnSize){
     int* res;
     int a;

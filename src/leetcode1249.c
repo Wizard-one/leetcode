@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-// #字符串 #栈 
+// #字符串 #栈 [[20]]
 
 char * minRemoveToMakeValid(char * s){
 	int len=strlen(s),top=0,*stackidx;

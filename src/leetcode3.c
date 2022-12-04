@@ -1,8 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 //#fail hash 表没做好
-#define IMAX(a,b) ((a)>(b)?(a):(b))
 
+// #hash #字符串
+#define IMAX(a,b) ((a)>(b)?(a):(b))
+/* 无重复字符的最长子串
+ */
+
+// 要看清楚字符串的范围，如果范围包含大小写字母，空格，符号，那不如直接将hash表设置为129 存储ASCII码所有范围的字符。
 int hash(char s)
 {
 	if (s>='a'&&s<='z')

@@ -1,19 +1,30 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-/**
- * Return an array of arrays of size *returnSize.
- * The sizes of the arrays are returned as *returnColumnSizes array.
- * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().
+
+/* 
+三数之和 
+
+求三数相加为0 的三元数组 例如
+nums = [-1,0,1,2,-1,-4]: 
+[[-1,-1,2],[-1,0,1]]
+
+当暴力需要O(N^3)才能解决时就需要考虑排序。上来先快排O(nlogn)
+排序过后
+-4 -1 -1 0 1 2
+然后必然需要先固定一个值,i, 才能去搜下一个,这也就确定了不管用什么方法, 时间复杂度必然是O(n^2) 的
+
+固定一个值之后问题就转换为[[1]] 那用双指针或者hash表求解都可以
  */
-// #数组 #排序 #双指针
+
+// #数组 #排序 #双指针 [[1]]
 int cmp(const void *a,const void *b)
 {
 	return *((int *)a)-*((int*) b);
 }
 
 int** threeSum(int* nums, int numsSize, int* returnSize, int** returnColumnSizes){
-	qsort(nums,numsSize,sizeof(int),cmp);
+	qsort(nums,numsSize,sizeof(int),cmp);//快排
 	int i,j,k;
 	int **ans;
 	*returnSize=0;
@@ -21,20 +32,21 @@ int** threeSum(int* nums, int numsSize, int* returnSize, int** returnColumnSizes
 	*returnColumnSizes=malloc(sizeof(int)*100000);
 	for (i = 0; i <numsSize-1; i++)
 	{
-		k=numsSize-1;
-		if (i>0 && nums[i]==nums[i-1])
+		k=numsSize-1;//k从末尾开始
+		if (i>0 && nums[i]==nums[i-1])//跳过相同的值 i==0 不跳过
 		{
 			continue;
 		}
 		
 		for ( j = i+1; j < k; j++)
 		{	
-			if (j>i+1 && nums[j]==nums[j-1])
+			if (j>i+1 && nums[j]==nums[j-1])//同样跳过相同的值 j==i+1 不跳过
 			{
 				continue;
 			}
 			while (j+1<k && nums[i]+nums[j]+nums[k]>0)
 			{
+				//排序过后k的遍历是从大到小的,所以k--
 				k--;			
 			}
 			

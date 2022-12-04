@@ -23,7 +23,11 @@ void expandCenter(char *s,int* st, int* ed,int len)
 	(*st)++;
 	(*ed)--;
 }
+/* 寻找最长回文串
 
+寻找回文中心然后尝试向左右扩展，如果遇到边界就停止扩展
+
+ */
 char * longestPalindrome(char * s){
 	char *ans;
 	int len=strlen(s);
@@ -37,7 +41,7 @@ char * longestPalindrome(char * s){
 		st2=i;
 		ed2=i+1;
 		expandCenter(s,&st2,&ed2,len);//回文中心有2个字符例如abba
-		if (ed-st<ed1-st1)
+		if (ed-st<ed1-st1)//维护一个最长回文串的起点与终点
 		{
 			st=st1;
 			ed=ed1;

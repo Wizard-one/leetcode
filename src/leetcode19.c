@@ -3,15 +3,17 @@
 #include <stdio.h>
 
 //#哑节点 #双指针 #快慢指针
+/* 删除链表的倒数第 N 个结点 */
 struct ListNode* removeNthFromEnd(struct ListNode* head, int n){
 	struct ListNode* fcur=head,*scur,*dummy;
-	dummy=malloc(sizeof(struct ListNode));
+	dummy=malloc(sizeof(struct ListNode));//哑节点维护头节点删除的情况
 	dummy->next=head;
 	scur=dummy;
 	for (size_t i = 0; i < n; i++)
 	{
-		fcur=fcur->next;
+		fcur=fcur->next;//快指针先移动n次
 	}
+	// 然后指针同时移动,快指针到头就启动删除
 	while (fcur!=NULL)
 	{
 		fcur=fcur->next;
