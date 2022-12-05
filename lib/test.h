@@ -19,6 +19,8 @@ struct TreeNode {
 
 void TreeInit(struct TreeNode **T,int *nums,int *idx);
 
+struct TreeNode* TreeInit_prein(int* preorder,int* inorder, int Size);
+
 void TreePrint(struct TreeNode* root);
 
 void printmat(int **mat, int matrixSize, int* matrixColSize);

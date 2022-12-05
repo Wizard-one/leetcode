@@ -70,6 +70,61 @@ void TreeInit(struct TreeNode **T,int *nums,int *idx)
 		TreeInit(&(*T)->right,nums,idx);
 	}
 }
+
+
+/**
+ * @brief 构建子树
+ * 
+ * @param hash 中序遍历的hash 表 key=tree node value; value=该value 对应的中序遍历idx 
+ * @param preorder 先序遍历数组
+ * @param preleft 先序遍历中左子树开始的位置
+ * @param preright 先序遍历中右子树开始的位置
+ * @param instart 中序遍历序列中一颗子树开始位置
+ * @param inend 中序遍历序列中一颗子树结束位置
+ * @return struct TreeNode* 
+ */
+struct TreeNode* subTree(int *hash,int* preorder,int preleft,int preright,int instart,int inend)
+{
+	if (preleft>preright)
+	{
+		return NULL;
+	}
+	struct TreeNode *root=malloc(sizeof(struct TreeNode));
+	root->val=preorder[preleft];//先序遍历区间第一个节点为根节点
+	int inroot=hash[root->val+3000];//中序遍历中定位到根节点idx
+	int lnum=inroot-instart;//left subtree num
+ 	// 左子树创建:
+	// 先序列表左子树开始位置显然就是当前根节点+1, 右子树开始位置就是左子树的数目+当前根节点位置
+	// 中序列表开始位置不变，结束位置是当前根节点位置-1
+	root->left=subTree(hash,preorder,preleft+1,preleft+lnum,instart,inroot-1);
+	// 右子树创建:
+	// 先序列表左子树开始位置是当前根节点+1+左子树长度, 右子树开始位置不变
+	// 中序列表开始位置是当前根节点位置+1，结束位置不变
+	root->right=subTree(hash,preorder,lnum+preleft+1,preright,inroot+1,inend);
+	return root;
+}
+
+/**
+ * @brief 使用先序遍历与中序遍历构造二叉树
+ * 
+ * @param preorder 先序遍历表
+ * @param inorder 先序遍历表
+ * @param Size 二叉树总节点数
+ * @return struct TreeNode* 
+ */
+struct TreeNode* TreeInit_prein(int* preorder,int* inorder, int Size){
+	int hash[6000]={0};
+	struct TreeNode*root;
+	// 构建hash表降低搜索复杂度
+	for (size_t i = 0; i < Size; i++)
+	{
+		hash[inorder[i]+3000]=i;
+	}
+	root=subTree(hash,preorder,0,Size-1,0,Size-1);
+	return root;
+}
+
+
 /**
  * @brief 层序打印树
  * 
