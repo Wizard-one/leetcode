@@ -50,7 +50,7 @@ void ListPrint(struct ListNode * l)
 
 /**
  * @brief Create a Bi Tree object
- * 
+ * 先序遍历创建
  * @param T Tree address
  * @param nums list use -1 mark NULL
  * @param idx list index
@@ -106,7 +106,7 @@ struct TreeNode* subTree(int *hash,int* preorder,int preleft,int preright,int in
 
 /**
  * @brief 使用先序遍历与中序遍历构造二叉树
- * 
+ * 需要注意，二叉树val不能有重复
  * @param preorder 先序遍历表
  * @param inorder 先序遍历表
  * @param Size 二叉树总节点数
