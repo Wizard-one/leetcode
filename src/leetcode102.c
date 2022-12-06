@@ -16,7 +16,6 @@ int** levelOrder(struct TreeNode* root, int* returnSize, int** returnColumnSizes
 	queue=malloc(sizeof(struct TreeNode *)*2000);
 	int front=0,rear=0;
 	queue[front++]=root;
-	struct TreeNode* root;
 	while ((front)!=(rear))
 	{
 		int last=(front);//标记当前层位置

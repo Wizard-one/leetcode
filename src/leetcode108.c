@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// #BST #二叉树 #中序遍历 #递归 #二分法
+// #BST #二叉树 #中序遍历 #递归 #二分法 time: O(n) space: O(logn)
 /* 将排序好的数组转化为一颗二叉搜索树
 
 确定好可以选择中间节点作为root 之后 就可以通过拆分区间来实现递归
