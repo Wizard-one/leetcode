@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-
+// [[26]] 一模一样
 int removeElement(int* nums, int numsSize, int val){
     int fidx;
     fidx=0;
