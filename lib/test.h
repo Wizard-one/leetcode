@@ -17,6 +17,8 @@ struct TreeNode {
     struct TreeNode *right;
 };
 
+void HeapSort(int* nums,int numsSize);
+
 void TreeInit(struct TreeNode **T,int *nums,int *idx);
 
 struct TreeNode* TreeInit_prein(int* preorder,int* inorder, int Size);

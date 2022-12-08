@@ -175,3 +175,65 @@ void printmat(int **mat, int matrixSize, int* matrixColSize)
 		printf("\n");
 	}
 }
+
+
+/**
+ * @brief 将数组调整为大顶堆
+ * 
+ * @param nums 数组
+ * @param s 大顶堆需要调整的节点
+ * @param m 大顶堆的终止点
+ */
+void HeapAdjust(int * nums,int s, int m)
+{
+	int temp,j;
+	temp=nums[s];
+	// 根据完全二叉树的性质，遍历调整左右两个孩子
+	// 数组起始点为0 左孩子一定是 2*s+1 ,右孩子是2*s+2
+	// 终止条件为到达叶子节点，或者满足大顶堆条件
+	for ( j = 2*s+1; j <=m; j*=2)
+	{
+		if (j<m&&nums[j]<nums[j+1])//从左右孩子中挑选一个大的
+		{
+			++j;
+		}
+		if (temp>=nums[j])//需要调整节点s 大于最大的child 满足大顶堆要求，break
+		{
+			break;
+		}
+		// 不然就是将调整节点s赋值为最大的孩子
+		nums[s]=nums[j];
+		// 将孩子作为下一个交换节点，检查交换后的孩子是否还满足大顶堆的要求
+		s=j;
+	}
+	nums[s]=temp;//最终将原有调整节点的值放到交换之后的位置
+}
+
+
+
+/**
+ * @brief 堆排序
+ * 
+ * 从小到大排序
+ * 
+ * @param nums 被排序数组
+ * @param numsSize 数组大小
+ */
+void HeapSort(int* nums,int numsSize)
+{
+	int i;
+	for ( i = numsSize/2; i >= 0; i--)
+	{
+		HeapAdjust(nums,i,numsSize-1);//创建大顶堆
+	}
+
+	for (i = numsSize-1; i > 0; i--)
+	{
+		// 将堆顶记录与未排序的最后一个记录交换
+		int t=nums[0];
+		nums[0]=nums[i];
+		nums[i]=t;
+		// 重新将0..i-1 调整为大顶堆
+		HeapAdjust(nums,0,i-1);
+	}
+}
