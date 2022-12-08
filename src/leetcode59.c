@@ -2,13 +2,12 @@
 #include <stdlib.h>
 #include <test.h>
 /**
- * Return an array of arrays of size *returnSize.
- * The sizes of the arrays are returned as *returnColumnSizes array.
- * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().
+ 59. 螺旋矩阵 II
+ 给你一个正整数 n ，生成一个包含 1 到 n2 所有元素，且元素按顺时针顺序螺旋排列的 n x n 正方形矩阵 matrix 。
  */
 
 // #数组 #模拟
-// 模拟就是照着他说的来
+// 模拟就是照着他说的来，难点就是定义边界
 int** generateMatrix(int n, int* returnSize, int** returnColumnSizes){
 	int **res;
 	res=malloc(sizeof(int *)*n);
