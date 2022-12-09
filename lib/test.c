@@ -280,7 +280,7 @@ int Partition(int *nums,int low, int high)
 		swapint(&nums[low],&nums[high]);
 		// 此时未处理的就是 low->pivot->high 这个区间内的值，两端都是处理过的
 	}
-	
+	return low;
 }
 
 /**
