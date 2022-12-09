@@ -177,6 +177,13 @@ void printmat(int **mat, int matrixSize, int* matrixColSize)
 }
 
 
+void swapint(int *a,int *b)
+{
+	int t=*a;
+	*a=*b;
+	*b=t;
+}
+
 /**
  * @brief 将数组调整为大顶堆
  * 
@@ -230,10 +237,79 @@ void HeapSort(int* nums,int numsSize)
 	for (i = numsSize-1; i > 0; i--)
 	{
 		// 将堆顶记录与未排序的最后一个记录交换
-		int t=nums[0];
-		nums[0]=nums[i];
-		nums[i]=t;
+		swapint(&nums[0],&nums[i]);
 		// 重新将0..i-1 调整为大顶堆
 		HeapAdjust(nums,0,i-1);
 	}
+}
+
+/**
+ * @brief 将区间划分为 pivot 的左右区间
+ * 
+ * 区间划分为[low,pivot-1] 与 [pivot+1,high] 
+ * [low,pivot-1]区间值都小于 pivot 
+ * [pivot+1,high] 区间都大于 pivot
+ * 
+ * @param nums 
+ * @param low 
+ * @param high 
+ * @return int 
+ */
+int Partition(int *nums,int low, int high)
+{
+	int pivotkey;
+	pivotkey=nums[low];
+	/* low or high 中的一个为 pivotkey */
+	/* 到达终止条件 pivotkey左边都是小于pivotkey 右边都是大于pivotkey */
+	while (low<high)
+	{
+		// 将high(右边)指针移动到 nums[high]<pivot 位置
+		
+		while (low<high&&nums[high]>=pivotkey)
+		{
+			high--;
+		}
+		// 此时将pivot交换到右侧，如此一来 pivot 的右侧都是大于他的
+		swapint(&nums[low],&nums[high]);
+		// 同理 将low指针移动到nums[low]>pivot
+		while (low<high&&nums[low]<=pivotkey)
+		{
+			low++;
+		}
+		// 交换，让 pivot左侧都是小于他的，同时这也维护了右侧都是大于他的
+		swapint(&nums[low],&nums[high]);
+		// 此时未处理的就是 low->pivot->high 这个区间内的值，两端都是处理过的
+	}
+	
+}
+
+/**
+ * @brief 快速排序实现
+ * 
+ * @param nums 排序数组
+ * @param low 排序下界
+ * @param high 排序上界
+ */
+void QSort(int *nums,int low,int high)
+{
+	int pivot;
+	if (low<high)
+	{
+		// 区间排序并返回枢轴，一次排序并不能保证整个区间都严格递增，
+		pivot=Partition(nums,low,high);
+		// 所以需要对左右子区间再次进行递归排序
+		QSort(nums,low,pivot-1);
+		QSort(nums,pivot+1,high);
+	}
+}
+
+/**
+ * @brief 快排的封装
+ * 
+ * @param nums 数组
+ * @param numsSize 数组大小
+ */
+void QuickSort(int *nums,int numsSize)
+{
+	QSort(nums,0,numsSize-1);
 }
