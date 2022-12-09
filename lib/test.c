@@ -250,10 +250,11 @@ void HeapSort(int* nums,int numsSize)
  * [low,pivot-1]区间值都小于 pivot 
  * [pivot+1,high] 区间都大于 pivot
  * 
+ * 可以发现每一次分片都是确定了一个元素的下标的实际位置
  * @param nums 
- * @param low 
- * @param high 
- * @return int 
+ * @param low 排序下限
+ * @param high 排序上限
+ * @return int 枢轴下标
  */
 int Partition(int *nums,int low, int high)
 {
