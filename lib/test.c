@@ -49,6 +49,21 @@ void ListPrint(struct ListNode * l)
 }
 
 /**
+ * @brief Print Array
+ * 
+ * @param nums array
+ * @param numsSize array size
+ */
+void ArrayPrint(int *nums,int numsSize)
+{
+	for (size_t i = 0; i < numsSize; i++)
+	{
+		printf("%d,",nums[i]);
+	}
+	printf("\n");
+}
+
+/**
  * @brief Create a Bi Tree object
  * 先序遍历创建
  * @param T Tree address
@@ -188,32 +203,35 @@ void swapint(int *a,int *b)
  * @brief 将数组调整为大顶堆
  * 
  * @param nums 数组
- * @param s 大顶堆需要调整的节点
- * @param m 大顶堆的终止点
+ * @param start 大顶堆需要调整的节点
+ * @param end 大顶堆的终止点
  */
-void HeapAdjust(int * nums,int s, int m)
+void HeapAdjust(int * nums,int start, int end)
 {
-	int temp,j;
-	temp=nums[s];
+	int parent=start;//初始节点作为父节点
+	// 数组起始点为0
+	int child=start*2+1;// 左孩子是 2*s+1 //右孩子是2*s+2
 	// 根据完全二叉树的性质，遍历调整左右两个孩子
-	// 数组起始点为0 左孩子一定是 2*s+1 ,右孩子是2*s+2
 	// 终止条件为到达叶子节点，或者满足大顶堆条件
-	for ( j = 2*s+1; j <=m; j*=2)
+	while (child<=end)
 	{
-		if (j<m&&nums[j]<nums[j+1])//从左右孩子中挑选一个大的
+		if (child<end&&nums[child]<nums[child+1])//从左右孩子中挑选一个大的
 		{
-			++j;
+			++child;
 		}
-		if (temp>=nums[j])//需要调整节点s 大于最大的child 满足大顶堆要求，break
+		if (nums[parent]>=nums[child])//需要调整节点s 大于最大的child 满足大顶堆要求，break
 		{
-			break;
+			return;
 		}
-		// 不然就是将调整节点s赋值为最大的孩子
-		nums[s]=nums[j];
-		// 将孩子作为下一个交换节点，检查交换后的孩子是否还满足大顶堆的要求
-		s=j;
+		else
+		{
+			// 不然就是将父节点调整为最大的孩子
+			swapint(&nums[parent],&nums[child]);
+			//继续向下搜索
+			parent=child;
+			child=2*child+1;
+		}
 	}
-	nums[s]=temp;//最终将原有调整节点的值放到交换之后的位置
 }
 
 
@@ -233,7 +251,6 @@ void HeapSort(int* nums,int numsSize)
 	{
 		HeapAdjust(nums,i,numsSize-1);//创建大顶堆
 	}
-
 	for (i = numsSize-1; i > 0; i--)
 	{
 		// 将堆顶记录与未排序的最后一个记录交换

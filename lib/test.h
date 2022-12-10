@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+void ArrayPrint(int *nums,int numsSize);
+
 struct ListNode* ListInit(int* l,int ns);
 
 void ListPrint(struct ListNode * l);
