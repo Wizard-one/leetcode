@@ -2,29 +2,21 @@
 #include <stdio.h>
 #include <string.h>
 
-// #杨辉三角 #数组
+// #杨辉三角 #数组 [[118]]
+/* 给定一个非负索引 rowIndex，返回「杨辉三角」的第 rowIndex 行。 */
 
+/* 多存上一层变量,或者倒序遍历,这样节省空间同时减少了变量的维护 */
 int* getRow(int rowIndex, int* returnSize){
 	int *ans;
 	*returnSize=rowIndex+1;
-	int last[rowIndex+1];//或者多创建一个变量，存储上一层
 	ans=malloc((rowIndex+1)*(sizeof (int)));
+	memset(ans, 0, sizeof(int) * (*returnSize));//要预先置零,倒序存储会访问到上层最后一个元素之外的一个元素
 	ans[0]=1;
-	// printf("1\n");
-	if (rowIndex==0)
-	{	
-		return ans;
-	}
-	ans[1]=1;
-	// printf("1,1\n");
-	last[0]=1;
-	last[1]=1;
-	for (size_t i = 2; i <=rowIndex; i++)
+	for (int i = 1; i <=rowIndex; i++)
 	{
-		memcpy(last,ans,sizeof(int)*i);
 		// ans[i]=1;
 		// printf("%d,",ans[0]);
-		for (size_t j = i; j > 0; --j)
+		for (int j = i; j > 0; --j)
 		// 倒着存，这样不会覆盖
 		{
 			ans[j]+=ans[j-1];
@@ -38,7 +30,7 @@ int* getRow(int rowIndex, int* returnSize){
 int main()
 {
 	int *ans,r,*c;
-	ans=getRow(4,&r);
+	ans=getRow(1,&r);
 	for (size_t j = 0; j < r; j++)
 	{
 		printf("%d,",ans[j]);
