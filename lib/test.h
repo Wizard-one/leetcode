@@ -29,4 +29,4 @@ struct TreeNode* TreeInit_prein(int* preorder,int* inorder, int Size);
 
 void TreePrint(struct TreeNode* root);
 
-void printmat(int **mat, int matrixSize, int* matrixColSize);
+void MatPrint(int **mat, int matrixSize, int* matrixColSize);

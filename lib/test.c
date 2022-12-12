@@ -179,7 +179,7 @@ void TreePrint(struct TreeNode* root)
  * @param matrixSize 矩阵row num
  * @param matrixColSize 矩阵col num
  */
-void printmat(int **mat, int matrixSize, int* matrixColSize)
+void MatPrint(int **mat, int matrixSize, int* matrixColSize)
 {
 	for (size_t i = 0; i < matrixSize; i++)
 	{
