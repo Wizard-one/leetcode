@@ -2,7 +2,14 @@
 #include <stdlib.h>
 
 
-// #层序遍历 #二叉树 [[114]] #广度优先搜索 [[116]]
+// #层序遍历 #二叉树 [[114]] #广度优先搜索 [[116]] #mid
+
+/* 102. 二叉树的层序遍历
+
+给你二叉树的根节点 root ，返回其节点值的 层序遍历 。 （即逐层地，从左到右访问所有节点）。 
+*/
+
+/* 标准层序遍历，一般来说是通过队列迭代去维护层序遍历的，即广度优先搜索 */
 int** levelOrder(struct TreeNode* root, int* returnSize, int** returnColumnSizes){
 	int **ans;
 	(*returnSize)=0;
@@ -23,8 +30,10 @@ int** levelOrder(struct TreeNode* root, int* returnSize, int** returnColumnSizes
         result[*returnSize] = (int*)malloc(sizeof(int) * (last - (rear)));
 		while ((rear)<last)	
 		{
+			// 从头部出队
 			root=queue[(rear)++];
 			result[*returnSize][col++]=root->val;
+			// 将左右子树入队
 			if (root->left!=NULL)
 				queue[(front)++]=root->left;
 			if (root->right!=NULL)		

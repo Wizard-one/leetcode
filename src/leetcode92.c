@@ -1,7 +1,10 @@
 #include <test.h>
 #include <stdlib.h>
 
-// #树 #递归 #中序搜索
+// #树 #递归 #中序搜索 [[98]]
+
+/*  标准的中序遍历没什么好说
+ */
 int GetVal(struct TreeNode* root,int *result,int* n)
 {
 	if (root==NULL)

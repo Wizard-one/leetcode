@@ -2,9 +2,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// #BST #二叉树 #中序遍历 #递归 #二分法 time: O(n) space: O(logn)
-/* 将排序好的数组转化为一颗二叉搜索树
+// #BST #二叉树 #前序遍历 #递归 #二分法 time: O(n) space: O(logn)
+/* 108 将排序好的数组转化为一颗二叉搜索树
+给你一个整数数组 nums ，其中元素已经按 升序 排列，请你将其转换为一棵 高度平衡 二叉搜索树。
 
+高度平衡 二叉树是一棵满足「每个节点的左右两个子树的高度差的绝对值不超过 1 」的二叉树。
+ */
+
+/* 
 确定好可以选择中间节点作为root 之后 就可以通过拆分区间来实现递归
 
 实际上只需要传递区间的两个端点，不需要进行区间的赋值
@@ -13,7 +18,7 @@ struct TreeNode* CreateBSTNode(int* nums, int left,int right)
 {
 	if (left>right)
 	{
-		return NULL;
+		return NULL;//终止条件就是左右边界非法
 	}
 	int mid=(left+right)/2;
 	struct TreeNode *new;
