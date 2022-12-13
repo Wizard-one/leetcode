@@ -1,6 +1,6 @@
 #include <test.h>
 
-// #树 #递归 #后序搜索
+// #二叉树 #递归 #后序遍历
 int GetVal(struct TreeNode* root,int *result,int* n)
 {
 	if (root==NULL)
@@ -13,6 +13,7 @@ int GetVal(struct TreeNode* root,int *result,int* n)
     return 1;
 }
 
+/* 标准后序遍历 */
 int* postorderTraversal(struct TreeNode* root, int* returnSize){
 	int *ans;
 	*returnSize=0;

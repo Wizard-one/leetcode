@@ -14,7 +14,7 @@ int GetVal(struct TreeNode* root,int *result,int* n)
 	GetVal(root->right,result,n);
     return 1;
 }
-
+/* 标准前序遍历 */
 int* preorderTraversal(struct TreeNode* root, int* returnSize){
 	int *ans,n=0;
 	ans=malloc(100*sizeof(int));
