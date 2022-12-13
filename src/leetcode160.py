@@ -3,7 +3,7 @@ class ListNode:
 	def __init__(self, x):
 		self.val = x
 		self.next = None
-# #hash #链表
+# #hash #链表 [[142]]
 """ 
 求链表相交位置
 直接使用hash表暴力求解, 用hash表记录链表a的所有内存地址，然后遍历b，当内存地址发生重复则返回

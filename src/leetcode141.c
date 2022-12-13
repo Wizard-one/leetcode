@@ -16,7 +16,7 @@ struct ListNode {
  */
 
 
-//#双指针，#快慢，#链表
+//#双指针，#快慢指针 #链表 [[142]]
 
 /* 检查有环只需要用快慢指针检测指针是否相遇即可，或者使用hash表 */
 bool hasCycle(struct ListNode *head) {
