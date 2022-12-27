@@ -15,7 +15,7 @@ from lib.test import *
 
 """
 
-# #图 #hash #easy
+# #有向图 #hash #easy
 class Solution:
 	""" 
 	这边做了一个hash表 分别记录数组的头尾 只要检查头为0 尾为n-1 即可
