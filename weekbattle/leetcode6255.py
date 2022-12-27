@@ -1,6 +1,6 @@
 from typing import List
 import collections
-# #图 #hash #队列  #排序
+# #无向图 #hash #队列  #排序
 
 """ 两个城市间路径的最小分数
 
