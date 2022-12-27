@@ -105,9 +105,15 @@ bool searchMatrixGG(int** matrix, int matrixSize, int* matrixColSize, int target
 	}
 }
 
+/* 240. 搜索二维矩阵 II
+编写一个高效的算法来搜索 m x n 矩阵 matrix 中的一个目标值 target 。该矩阵具有以下特性：
 
+    每行的元素从左到右升序排列。
+    每列的元素从上到下升序排列。
+ */
 
-// #搜索 #矩阵
+// #搜索 #matrix  
+/* 从右上角开始搜索，这样向下走都是变大，向左走都是变小 */
 bool searchMatrix(int** matrix, int matrixSize, int* matrixColSize, int target){
 	int m=matrixSize,n=matrixColSize[0];
 	int x=0,y=n-1;
