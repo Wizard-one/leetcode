@@ -3,7 +3,7 @@
 
 #define IMAX(a,b) (a>b)?(a):(b)
 
-// #深度优先搜索
+// #深度优先搜索 #matrix
 void searchArea(int r,int c,int** grid, int gridSize, int* gridColSize,int* area)
 {
 	if (r>=gridSize||r<0)
