@@ -26,7 +26,7 @@ class Node:
 		self.right = right
 		self.next = next
 
-# #二叉树 #层序遍历 [[114]] [[102]] #广度优先搜索
+# #二叉树 #层序遍历 [[114]] [[102]] #广度优先搜索 [[117]]
 class Solution:
 	""" 层序遍历,到了结尾直接连通None """
 	def connect(self, root: 'Optional[Node]') -> 'Optional[Node]':
