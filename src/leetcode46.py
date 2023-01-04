@@ -6,7 +6,11 @@ from typing import List
 class Solution:
 
 	"""
-	经典的回溯题目
+	经典的回溯题目，做一个决策森林，维护2个基本变量
+	- wait: 还未选择过的
+	- walk: 已经选择过的
+
+
 	"""
 	def __init__(self) -> None:
 		self.ans=[]
@@ -28,7 +32,7 @@ class Solution:
 		for i in range(len(wait)):
 			walk.append(wait[i])
 			nextwait=wait.copy()#选择
-			nextwait.remove(wait[i])
+			nextwait.remove(wait[i])#由于是python 所以需要传递一份拷贝
 			self.backtrack(nextwait,walk)#向下搜索
 			walk.pop()# 撤销选择
 
