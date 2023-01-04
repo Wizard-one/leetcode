@@ -33,7 +33,9 @@ class Solution:
 		
 		for i in range(1,m-1):
 			for j in range(1,n-1):
-				self.floodinside(visited,board,i,j)
+				if board[i][j]=="O" and visited[i][j]==0:
+					visited[i][j]=1
+					board[i][j]="X"
 
 
 
@@ -50,21 +52,6 @@ class Solution:
 		self.floodboundary(visited,board,r+1,c)
 		self.floodboundary(visited,board,r,c-1)
 		self.floodboundary(visited,board,r,c+1)
-	
-	def floodinside(self,visited:List[List[int]],board:List[List[str]],r:int,c:int):
-		m=len(board)
-		n=len(board[0])
-		if (r>=m-1 or r<1) or c>=n-1 or c<1 or board[r][c]=="X" or visited[r][c]==1:
-			visited[r][c]=1
-			return 
-
-		visited[r][c]=1
-		board[r][c]="X"
-		# 这一步体现为深度优先，先遇到边界再开始回朔
-		self.floodinside(visited,board,r-1,c)
-		self.floodinside(visited,board,r+1,c)
-		self.floodinside(visited,board,r,c-1)
-		self.floodinside(visited,board,r,c+1)
 
 if __name__ == "__main__":
 	s=Solution().solve
