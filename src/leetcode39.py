@@ -36,10 +36,7 @@ class Solution:
 		""" 
 		walk : 记录走过的路径
 		"""
-		# 当前选择已经超过target 直接完成选择
-		if target<0:
-			return
-		elif target==0:
+		if target==0:
 			# 等于target 记录路径
 			self.ans.append(walk.copy())
 			return
@@ -48,6 +45,13 @@ class Solution:
 			cur=wait[0]
 			walk.append(cur)
 			target-=cur
+			# 当前选择已经超过target 直接完成选择，剪枝优化
+			if target<0:
+				target+=cur
+				wait.popleft()
+				#撤销路径的记录
+				walk.pop()
+				return
 			nextwait=wait.copy()#选择，每一个栈还是要一个新的变量，不然再回溯的过程中会将原始变量弹空
 			self.backtrack(nextwait,walk,target)#向下搜索
 			# 当该元素的所有可能都被遍历选择过后再弹出该元素
