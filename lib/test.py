@@ -22,7 +22,21 @@ def	TreeInit(nums:List[int],idx:List[int])->TreeNode:
 		T.right=TreeInit(nums,idx)
 		return T
 		
-
+def HeapAdjust(nums:List[int],start:int,end:int):
+	""" 大顶堆的调整 """
+	parent=start
+	child=start*2+1
+	while(child<=end):
+		if child<end and nums[child]<nums[child+1]:
+			child+=1
+		if nums[parent]>nums[child]:
+			return
+		else:
+			temp=nums[child]
+			nums[child]=nums[parent]
+			nums[parent]=temp
+			parent=child
+			child=child*2+1
 
 def TreeInit_prein(preorder: List[int], inorder: List[int]) -> TreeNode:
 	""" 
