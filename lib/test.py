@@ -1,11 +1,35 @@
 from typing import Optional,List,Set
 import collections
 import math
+import queue
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
         self.left = left
         self.right = right
+
+def ListInit(nums:List[int]):
+	dummy=ListNode()
+	cur=dummy
+	for i in nums:
+		cur.next=ListNode(i)
+	return dummy.next
+
+def ListPrint(l:ListNode):
+	"""
+	docstring
+	"""
+	s=""
+	while(l):
+		s+=f"{l.val}"
+		l=l.next
+	print(s)
 
 def	TreeInit(nums:List[int],idx:List[int])->TreeNode:
 	"""
