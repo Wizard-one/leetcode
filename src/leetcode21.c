@@ -11,47 +11,44 @@
 虽然可以用递归来解决,但毕竟递归需要O(n) 的空间复杂度,所以还是使用迭代
 
 使用哑节点规避了处理头节点的问题,将list1 作为被插入序列,将List2作为插入序列
+使用额外的一个指针cur 方便插入操作
+
+
 - list1.val>list2.val -> list2 
 - list1.val<list2.val -> list1 
  */
 struct ListNode* mergeTwoLists(struct ListNode* list1, struct ListNode* list2){
-	struct ListNode *temp;
-	struct ListNode *dum1,*dum2;
-	dum1=malloc(sizeof(struct ListNode));
-	dum1->next=list1;
-	dum2=malloc(sizeof(struct ListNode));
-	dum2->next=list2;
-	list1=dum1;//被插入序列
-	list2=dum2;//插入序列
-	while (list1->next!=NULL || list2->next!=NULL)
+	struct ListNode *dum;
+	struct ListNode *cur;
+	dum=malloc(sizeof(struct ListNode));
+	dum->next=list1;
+	cur=dum;//维护返回的指针,有了这个指针可以将问题简化为l1 l2 不断向前移动即可
+	while (list1!=NULL && list2!=NULL)
 	{
 
-		if (list1->next==NULL)
+		if (list1->val>list2->val)
 		{
-			list1->next=list2->next;
-			break;
-		}
-		else if (list2->next==NULL)
-		{
-			break;
-		}
-		else if (list1->next->val>list2->next->val)
-		{
-			// 当l2中节点小于l1当前节点 将L2节点插入l1
-			temp=list1->next;
-			list1->next=list2->next;//插入元素
-			list2->next=list2->next->next;//待插入序列删除已经插入的元素
-			list1=list1->next;//l1 前移
-			list1->next=temp;//重新link l1后继
+			// 当l2中节点小于l1当前节点 将L2节点插入cur
+			cur->next=list2;
+			list2=list2->next;
 		}
 		else
 		{
-			// 当l2中节点大于l1当前节点 l1 直接前移
+			// 当l2中节点大于l1当前节点 将L1节点插入cur
+			cur->next=list1;
 			list1=list1->next; 
 		}
+		cur=cur->next;//cur 不断前移
 	}
-	return dum1->next;
-	
+	if (list1)
+	{
+		cur->next=list1;
+	}
+	if (list2)
+	{
+		cur->next=list2;
+	}
+	return dum->next;
 }
 
 

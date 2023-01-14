@@ -1,11 +1,12 @@
 #include <test.h>
 #include <stdlib.h>
 #include <stdio.h>
-// #链表 [[82]]
+// #链表 [[82]] [[26]] #双指针
 
 /* 83. 删除排序链表中的重复元素
 给定一个已排序的链表的头 head ， 删除所有重复的元素，使每个元素只出现一次 。返回 已排序的链表 。 */
 
+/* cur 不断前进比较head 直到有不同 head 前进 */
 struct ListNode* deleteDuplicates(struct ListNode* head){
 	struct ListNode *ans=head,*cur=head;
 	if (head==NULL)

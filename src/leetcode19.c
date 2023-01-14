@@ -4,6 +4,8 @@
 
 //#哑节点 #双指针 #快慢指针
 /* 删除链表的倒数第 N 个结点 */
+
+/* 直接让一个指针先走然后再让一个指针后走 */
 struct ListNode* removeNthFromEnd(struct ListNode* head, int n){
 	struct ListNode* fcur=head,*scur,*dummy;
 	dummy=malloc(sizeof(struct ListNode));//哑节点维护头节点删除的情况
