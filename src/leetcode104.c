@@ -1,5 +1,4 @@
 #include <test.h>
-#define IMAX(a,b) (a>b)?(a):(b)
 // #二叉树 #递归 #前序搜索 #深度优先搜索
 
 
@@ -13,18 +12,19 @@
  */
 
 /* 简单的深度优先搜索，维护当前深度与最大深度两个变量 */
+#define IMAX(a,b) (a>b)?(a):(b)
 void GetDeepth(struct TreeNode* root,int *deep,int *maxdeep)
-{
-	
-	(*deep)++;
+{	
 	if (root==NULL)
 	{
-		(*deep)--;//每一次递归弹栈都减少一次度深度
 		*maxdeep=IMAX(*deep,*maxdeep);//记录最深的栈
 		return;
 	}
+	// 前序位置记录深度
+	(*deep)++;
 	GetDeepth(root->left,deep,maxdeep);
 	GetDeepth(root->right,deep,maxdeep);
+	//后序位置弹栈都回退深度
 	(*deep)--;
     return;
 }

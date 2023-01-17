@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdbool.h>
 
-//#字符串 #暴力解法 O(n^2)
+//#字符串 #暴力解法 O(n^2) #双指针
 
 /**
  * @brief 中心扩展寻找回文字符串边界
