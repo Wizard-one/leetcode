@@ -48,9 +48,60 @@ class Solution:
 						if s not in deadends:
 							q.append(s)
 							deadends.add(s)
-						cur[j]=temp
+					cur[j]=temp
 			count+=1
 		return -1
+
+# #双向BFS
+class Solution:
+	""" 这边添加一个双向BFS优化的示例。
+	使用两个hashset 而非队列进行维护，轮流扩散 h1 h2 虽然最坏情况都是O(N) 但是会有两者提前相遇的情况，即存在遍历更少节点的可能
+	
+	而始终从len小的hashset添加新的节点可以进一步减少遍历走过的节点数目
+	"""
+	def openLock(self, deadends: List[str], target: str) -> int:
+		def getNxt(char):
+			prev = str((int(char) + 9) % 10)
+			nxt = str((int(char) + 1) % 10)
+			return [prev, nxt]
+
+		if '0000' in deadends or target in deadends:
+			return -1
+		if target == '0000':
+			return 0
+		deadends = set(deadends)
+		visited = set(['0000', target])
+		# 起始hashset 终止hashset
+		startVis, endVis = set(['0000']), set([target])
+		res = 1
+		# 一定要两者都不为空，任意有一者为空说明可行路径都被走过了
+		while startVis and endVis:
+			# hashset 不可变 这边新建一个作为next
+			nxtVis = set()
+			# 始终从长度小的hashset进行扩散，这样添加的节点数少
+			if len(startVis) > len(endVis):
+				startVis, endVis = endVis, startVis
+			for cur in startVis:
+				cur = list(cur)
+				for i in range(4):
+					pd = cur[i]
+					for d in getNxt(pd):
+						cur[i] = d 
+						nxt = ''.join(cur)
+						if nxt not in deadends:
+							if nxt in endVis:
+								return res
+							if nxt not in visited:
+								visited.add(nxt)
+								nxtVis.add(nxt)
+					# 回退选择pd
+					cur[i] = pd
+			# 存储下一个hashset
+			startVis = nxtVis
+			# 注意是轮流走，而不是同时走，所以每次+1 即可
+			res += 1
+		return -1
+
 
 if __name__ == "__main__":
 	s=Solution().openLock

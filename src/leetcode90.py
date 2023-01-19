@@ -35,9 +35,12 @@ class Solution:
 			return
 
 		for i in range(len(wait)):
+			# 由于已经预先排序，遇到相等的不记录已经在列表中的组合
+			if i>0 and wait[i]==wait[i-1]:
+				continue
 			walk.append(wait[i])
-			if walk not in self.ans: self.ans.append(walk.copy())# 不记录已经在列表中的组合
-			nextwait=wait[i+1:].copy()#**核心**：向下搜索时对于已经选择过的元素不再重复选择
+			self.ans.append(walk.copy())
+			nextwait=wait[i+1:].copy()#**子集问题核心**：向下搜索时对于已经选择过的元素不再重复选择
 			self.backtrack(nextwait,walk)#向下搜索
 			walk.pop()# 撤销选择
 
