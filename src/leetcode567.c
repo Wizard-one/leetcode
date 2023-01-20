@@ -2,7 +2,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//#滑动窗 #hash表
+//#滑动窗 #hash表 [[76]]
+/*
+ 给你两个字符串 s1 和 s2 ，写一个函数来判断 s2 是否包含 s1 的排列。如果是，返回 true ；否则，返回 false 。
+
+换句话说，s1 的排列之一是 s2 的 子串 。
+ */
+
+/* 标准的滑动窗问题，基本类似76 */
+
+/* 检查两个hash表是否相同 */
 bool checkEQ(int* t1,int* t2)
 {
 	for (size_t i = 0; i < 26; i++)
@@ -14,7 +23,7 @@ bool checkEQ(int* t1,int* t2)
 	}
 	return true;
 }
-
+/* 做hash表 */
 void GetTable(char *s,int len,int* table)
 {
 	for (size_t i = 0; i < len; i++)

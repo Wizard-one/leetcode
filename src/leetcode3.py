@@ -1,11 +1,12 @@
 # #hash #滑动窗 #字符串 #子串
 
 """ 
-无重复字符的最长子串
+3. 无重复字符的最长子串
 
 给一个字符串s 给出最长无重复子串
 """
 class Solution:
+	""" 滑动窗，然后额外维护一个最大窗长 """
 	def lengthOfLongestSubstring(self, s: str) -> int:
 		if not s:return 0
 		win=set()#滑动窗为hash表
