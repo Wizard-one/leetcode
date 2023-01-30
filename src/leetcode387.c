@@ -1,5 +1,6 @@
 #include <stdio.h>
 // #hash #string
+// 387. 字符串中的第一个唯一字符
 int firstUniqChar(char * s){
 	int ord[26]={0},i=0,v;
 	while (s[i]!='\0')

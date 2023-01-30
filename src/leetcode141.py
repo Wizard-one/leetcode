@@ -5,7 +5,7 @@ class ListNode:
     def __init__(self, x):
         self.val = x
         self.next = None
-
+""" 环检测，直接hash表 """
 class Solution:
 	def hasCycle(self, head: Optional[ListNode]) -> bool:
 		a=[]
