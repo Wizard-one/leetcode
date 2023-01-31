@@ -33,3 +33,24 @@ class Solution:
 		for i in range(n):
 			mi=min(mi,dp[n-1][i])
 		return mi
+
+	""" 使用空间压缩将二维dp投影为1D dp"""
+	def minFallingPathSum(self, matrix: List[List[int]]) -> int:
+		n=len(matrix)
+		if n==1:
+			return matrix[0][0]
+		# 创建dp table 数组
+		# 初始条件
+		dp=matrix[0].copy()
+		for i in range(1,n):
+			# 从左向右赋值，所以保存上一个为左边的val
+			last=dp[0]
+			dp[0]=min(dp[0],dp[1])+matrix[i][0]
+			for j in range(1,n-1):
+				cur=dp[j]
+				dp[j]=min(dp[j],dp[j+1],last)+matrix[i][j]
+				last=cur
+			# 右边界只能有2个路径
+			dp[n-1]=min(dp[n-1],last)+matrix[i][n-1]
+		# 返回最小值
+		return min(dp)
