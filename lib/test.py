@@ -2,6 +2,7 @@ from typing import Optional,List,Set,Tuple
 import collections
 import math
 import queue
+import bisect
 
 class ListNode:
     def __init__(self, val=0, next=None):
