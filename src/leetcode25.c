@@ -33,7 +33,7 @@ k 是一个正整数，它的值小于或等于链表的长度。如果节点总
 - 子链表链接
 - 判断长度不足
  */
-struct ListNode* reverseKGroup(struct ListNode* head, int k){
+struct ListNode* reverseKGroup1(struct ListNode* head, int k){
 	struct ListNode *prev,*cur=head,*rear,*dummy;
 	dummy=malloc(sizeof(struct ListNode));
 	dummy->next=head;//构建dummy node 方便处理头节点
@@ -63,10 +63,54 @@ struct ListNode* reverseKGroup(struct ListNode* head, int k){
 	return dummy->next;
 }
 
+/* 递归方法求解
+	先做 a-b 之间的链表翻转
+ */
+struct ListNode* reverse(struct ListNode * head,struct ListNode *end)
+{
+	if (!head||(head==end))
+	{
+		return head;
+	}
+	struct ListNode *node=reverse(head->next,end);
+	head->next->next=head;
+	head->next=NULL;
+	return node;
+}
+
+/* 再递归的翻转链表
+	
+	每次给定k个节点的头尾，随后递归翻转后续链表last，随后将翻转之后的last链表与当前段链接
+ */
+struct ListNode* reverseKGroup(struct ListNode* head, int k){
+	// base case 如果head==NULL 返回NULL
+	if (!head)
+	{
+		return NULL;
+	}
+	struct ListNode *cur=head;
+	for (size_t i = 0; i < k-1; i++)
+	{
+		cur=cur->next;
+		// base case 如果链表长度不足，返回head
+		if (!cur)
+		{
+			return head;
+		}
+	}
+	struct ListNode *last=cur->next,*group;
+	// printf("%d,%d\n",head->val,cur->val);
+	// 翻转head-cur 段的链表，返回的是反转后链表的头
+	group=reverse(head,cur);
+	// 此时head 为反转后链表的尾部，直接链接后续链表
+	head->next=reverseKGroup(last,k);
+	return group;
+}
+
 int main(){
 	int l[]={1,2,3,4,5};
 	struct ListNode* head;
 	head=ListInit(l,5);
-	head=reverseKGroup(head,5);
+	head=reverseKGroup(head,2);
 	ListPrint(head);
 }
