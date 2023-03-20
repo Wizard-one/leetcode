@@ -1,5 +1,9 @@
-my leetcode record
+My leetcode record
 
-# TODO
-- add tag to each code result
-- add comment to each code
+Mainly Language is C and Python. most of problems add comment.
+
+src/* holds the questions
+
+weekbattle/* is leetcode week competition
+
+lib/ provide some help function.
